@@ -1,6 +1,8 @@
 Feature: Test feature
   #Feature represents a feature that is being worked on, such as login, update_user_details
 
+
+  @smoke
   Scenario: Test scenario
     Given I have set up all the pre-conditions for the test
     When I execute a specific step

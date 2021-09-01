@@ -6,7 +6,7 @@ import utilities.Driver;
 
 import java.util.List;
 
-public class PlaylistsPage {
+public class PlaylistsPage extends PageBase{
 
 
     @FindBy(xpath = "//button[.='NEW PLAYLIST']")

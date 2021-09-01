@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class BrowsePage {
+public class BrowsePage extends PageBase{
 
 
     @FindBy(xpath = "//div[@class='gridViewInfo']")

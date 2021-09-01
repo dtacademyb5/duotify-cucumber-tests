@@ -5,11 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class LoginPage {
+public class LoginPage extends PageBase{
 
-    public LoginPage(){
-       super();
-    }
 
 
     @FindBy(id = "loginUsername")

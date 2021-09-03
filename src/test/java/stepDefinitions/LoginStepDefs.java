@@ -16,13 +16,13 @@ public class LoginStepDefs {
 
     @Given("The user is on the homepage")
     public void the_user_is_on_the_homepage() {
-
+        System.out.println("Background");
         Driver.getDriver().get(url);
 
     }
     @When("The user enters the valid credentials")
     public void the_user_enters_the_valid_credentials() {
-
+        System.out.println("Sceanrio");
          new LoginPage().login(ConfigReader.getProperty("username1"), ConfigReader.getProperty("password1"));
 
     }
@@ -42,7 +42,7 @@ public class LoginStepDefs {
 
     @When("the user enters invalid credentials")
     public void the_user_enters_invalid_credentials() {
-       new LoginPage().login("dsvbjvsd", "dscvdhsdds");
+       new LoginPage().login("duotech", "duotech");
     }
     @Then("the user should not be able to login and get an error message")
     public void the_user_should_not_be_able_to_login_and_get_an_error_message() {

@@ -13,7 +13,7 @@ Feature: As a user, I should be able to login using login page.
     Then The user should be able to login and land on the homepage
 
 
-  @login
+  @loginInvalid
     Scenario: Login using invalid credentials
 
       When the user enters invalid credentials

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
-    @Before ("not @db_only")
+    @Before    //@Before ("not @db_only")
     public void setupScenario(){
         Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Driver.getDriver().manage().deleteAllCookies();
@@ -32,7 +32,7 @@ public class Hooks {
     }
 
 
-    @After  ("not @db_only")
+    @After
     public void tearDownScenario(Scenario scenario){
          if(scenario.isFailed()){
              byte[] screenshotAs = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);

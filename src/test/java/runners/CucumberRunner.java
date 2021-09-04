@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-        tags = "@login",   // "@login or @smoke", "@login and @smoke", "@login and not @smoke", "@login and @smoke and @regression"
+        tags = "@temp",   // "@login or @smoke", "@login and @smoke", "@login and not @smoke", "@login and @smoke and @regression"
         features = "src/test/resources/features", // path where the feature files are located
         glue = "stepDefinitions" // path where the step Definition methods glued to feature file steps are located
 //        ,dryRun = true    // this is used to generate step definition snippets without actually running the test

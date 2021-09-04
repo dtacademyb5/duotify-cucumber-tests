@@ -9,6 +9,8 @@ import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.sql.SQLOutput;
+
 public class LoginStepDefs {
 
 
@@ -66,6 +68,29 @@ public class LoginStepDefs {
     @When("the user enters valid username and invalid password")
     public void the_user_enters_valid_username_and_invalid_password() {
         new LoginPage().login(ConfigReader.getProperty("username1"), "cshbdjgvdbchdbsdvjgcsdv");
+    }
+
+    @When("The user enters the valid credentials as duotech for username and duotech for password")
+    public void theUserEntersTheValidCredentialsAsDuotechForUsernameAndDuotechForPassword() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("The user enters the valid credentials as {string} for username and {string} for password")
+    public void theUserEntersTheValidCredentialsAsForUsernameAndForPassword(String username, String password) {
+        System.out.println("USername: " + username);
+        System.out.println("PAssword: " + password);
+    }
+
+
+
+    @When("I send a query {string} and the id {int} also price {double}")
+    public void iSendAQueryAndTheIdAlsoPrice(String query, Integer amount, Double price) {
+
+
+        System.out.println(query);
+        System.out.println(amount);
+        System.out.println(price);
     }
 
 

@@ -1,4 +1,4 @@
-@loginScenarios
+
 Feature: As a user, I should be able to login using login page.
 
 
@@ -32,3 +32,28 @@ Feature: As a user, I should be able to login using login page.
 
     When the user enters valid username and invalid password
     Then the user should not be able to login and get an error message
+
+
+
+  Scenario: Login using valid credentials
+
+    When The user enters the valid credentials as "duotech" for username and "duotech" for password
+    Then The user should be able to login and land on the homepage
+
+  Scenario: Login using valid credentials 2
+
+    When The user enters the valid credentials as "donald.duck" for username and "donald" for password
+    Then The user should be able to login and land on the homepage
+
+
+
+
+  Scenario: Demo of the parametrized steps
+
+    When I send a query "select * from users" and the id 45 also price 23.56
+
+
+
+  Scenario: Demo of the parametrized steps 2
+
+    When I send a query "update users where id='45'" and the id 34 also price 45

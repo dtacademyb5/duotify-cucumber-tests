@@ -11,8 +11,11 @@ import org.junit.runner.RunWith;
 
         tags = "@temp",   // "@login or @smoke", "@login and @smoke", "@login and not @smoke", "@login and @smoke and @regression"
         features = "src/test/resources/features", // path where the feature files are located
+//        features = {"src/test/resources/features/ui", "src/test/resources/features/db"}, // for multiple paths
+//        features = "src/test/resources/features/login.feature",  // specific feature file
         glue = "stepDefinitions" // path where the step Definition methods glued to feature file steps are located
 //        ,dryRun = true    // this is used to generate step definition snippets without actually running the test
+//
 
         , plugin = {
                    "pretty",   // detailed test run results on the console

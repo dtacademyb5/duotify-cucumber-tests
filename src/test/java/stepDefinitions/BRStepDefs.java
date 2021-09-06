@@ -10,11 +10,15 @@ import pages.LoginPage;
 import utilities.DBUtility;
 import utilities.SeleniumUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BRStepDefs {
 
     String actualArtistName;
     Integer beforeCount;
     Integer expectedCount;
+    List<Object> actualGenres;
 
     @Given("I am logged in using {string} and {string}")
     public void iAmLoggedInUsingAnd(String username, String pass) {
@@ -54,4 +58,31 @@ public class BRStepDefs {
         int actualCount = afterCount - beforeCount;
         Assert.assertEquals(expectedCount, Integer.valueOf(actualCount));
     }
+
+    @When("I send an insert query to insert a new user")
+    public void iSendAnInsertQueryToInsertANewUser(String docString) {
+        System.out.println(docString);
+    }
+    @Then("The user should be inserted into the database")
+    public void theUserShouldBeInsertedIntoTheDatabase() {
+
+    }
+
+    @When("I send a query to retrieve genres from the db")
+    public void iSendAQueryToRetrieveGenresFromTheDb() {
+        List<List<Object>> list = DBUtility.getQueryResultAsListOfLists("select name from genres");
+
+        actualGenres = new ArrayList<>();
+        for (List<Object> row : list) {
+            actualGenres.add(row.get(0));
+        }
+
+
+    }
+    @Then("The result should contain the following genres")
+    public void theResultShouldContainTheFollowingGenres(List<Object> expectedGenres) {
+        Assert.assertEquals(expectedGenres, actualGenres);
+
+    }
+
 }

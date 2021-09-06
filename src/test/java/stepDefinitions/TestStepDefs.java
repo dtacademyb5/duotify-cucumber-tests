@@ -4,6 +4,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.List;
+import java.util.Map;
+
 public class TestStepDefs {
 
     @Given("I have set up all the pre-conditions for the test")
@@ -31,5 +34,41 @@ public class TestStepDefs {
     public void the_result_should_not_contain_this_outcome() {
         System.out.println("But step");
     }
+
+
+    @When("the user passes this information")
+    public void theUserPassesThisInformation(List<Map<String, String>> dataTable) {
+        System.out.println(dataTable);
+    }
+    @Then("It should passed correctly")
+    public void itShouldPassedCorrectly() {
+
+    }
+
+
+    @When("the user passes this information as a table")
+    public void theUserPassesThisInformationAsATable(List<List<Object>> dataTable) {
+        System.out.println(dataTable);
+    }
+
+
+    @When("the user passes this information as a table as a map")
+    public void theUserPassesThisInformationAsATableAsAMap(List<Map<String, Object>> dataTable) {
+        System.out.println(dataTable);
+    }
+
+
+    @When("the user passes this information as a table as a map of string and list")
+    public void theUserPassesThisInformationAsATableAsAMapOfStringAndList(Map<String, List<String>> dataTable) {
+        System.out.println(dataTable);
+    }
+
+
+    @When("the user passes this information as a table as a map of maps")
+    public void theUserPassesThisInformationAsATableAsAMapOfMaps(Map<String, Map<String,String>> dataTable) {
+        System.out.println(dataTable);
+    }
+
+
 
 }

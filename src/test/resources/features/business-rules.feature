@@ -25,7 +25,7 @@ Feature: Business rules related sceanrios
   Then The user should be inserted into the database
 
 
- @temp @db_only
+  @db_only
  Scenario: Verify genres
    When I send a query to retrieve genres from the db
    Then The result should contain the following genres

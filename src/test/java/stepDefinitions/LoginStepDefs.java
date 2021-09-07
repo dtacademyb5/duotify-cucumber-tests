@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 
+import com.mysql.cj.log.Log;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -78,8 +79,8 @@ public class LoginStepDefs {
 
     @When("The user enters the valid credentials as {string} for username and {string} for password")
     public void theUserEntersTheValidCredentialsAsForUsernameAndForPassword(String username, String password) {
-        System.out.println("USername: " + username);
-        System.out.println("PAssword: " + password);
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username, password);
     }
 
 

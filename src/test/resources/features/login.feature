@@ -57,3 +57,18 @@ Feature: As a user, I should be able to login using login page.
   Scenario: Demo of the parametrized steps 2
 
     When I send a query "update users where id='45'" and the id 34 also price 45
+
+
+  @temp
+  Scenario Outline: Login using valid credentials through examples
+
+    When The user enters the valid credentials as "<username>" for username and "<password>" for password
+    Then The user should be able to login and land on the homepage
+
+    Examples: valid username and password list
+      | username       | password    |
+      | duotech        | duotech     |
+      | donald.duck    | donald      |
+      | mickey.mouse   | mickeymouse |
+      | minnie.mouse   | minniemouse |
+      | scrooge.mcduck | scrooge     |

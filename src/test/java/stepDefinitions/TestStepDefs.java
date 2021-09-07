@@ -70,5 +70,20 @@ public class TestStepDefs {
     }
 
 
+    @Given("I have all the preresuisites")
+    public void iHaveAllThePreresuisites() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @When("I navigate to a {string} page")
+    public void iNavigateToAPage(String pageName) {
+
+    }
+    @Then("The page title should be {string} and api request should return {string}")
+    public void thePageTitleShouldBeAndApiRequestShouldReturn(String title, String status) {
+
+    }
+
+
 
 }

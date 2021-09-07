@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -79,10 +80,26 @@ public class BRStepDefs {
 
 
     }
-    @Then("The result should contain the following genres")
-    public void theResultShouldContainTheFollowingGenres(List<Object> expectedGenres) {
-        Assert.assertEquals(expectedGenres, actualGenres);
+//    @Then("The result should contain the following genres")
+//    public void theResultShouldContainTheFollowingGenres(List<Object> expectedGenres) {
+//        Assert.assertEquals(expectedGenres, actualGenres);
+//
+//    }
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

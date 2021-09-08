@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
 
-        features = "@target/failed-scenarios.txt", // path where the feature files are located
+        features = "@target/failed-scenarios.txt", // path where the text file with failed scenarios list is located
         glue = "stepDefinitions"
 
 

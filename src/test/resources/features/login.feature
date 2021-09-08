@@ -27,19 +27,19 @@ Feature: As a user, I should be able to login using login page.
     Then the user should not be able to login
 
 
-    @current
+    @fail
   Scenario: Login using valid username and invalid password
 
     When the user enters valid username and invalid password
     Then the user should not be able to login and get an error message
 
 
-
+  @fail
   Scenario: Login using valid credentials
 
-    When The user enters the valid credentials as "duotech" for username and "duotech" for password
+    When The user enters the valid credentials as "duotech" for username and "duotech1" for password
     Then The user should be able to login and land on the homepage
-
+  @fail
   Scenario: Login using valid credentials 2
 
     When The user enters the valid credentials as "donald.duck" for username and "donald" for password
@@ -59,7 +59,7 @@ Feature: As a user, I should be able to login using login page.
     When I send a query "update users where id='45'" and the id 34 also price 45
 
 
-  @temp
+
   Scenario Outline: Login using valid credentials through examples
 
     When The user enters the valid credentials as "<username>" for username and "<password>" for password

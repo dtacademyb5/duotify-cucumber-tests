@@ -99,6 +99,8 @@
                 <includes>
 <!--                    name of your runner class-->
                     <include>**/*CucumberRunner.java</include>
+                    <include>**/*FailedScenariosRunner.java</include>
+
                 </includes>
             </configuration>
         </plugin>

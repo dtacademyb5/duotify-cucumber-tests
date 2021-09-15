@@ -1,13 +1,18 @@
 package apitests;
 
 import com.google.gson.JsonObject;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
+import java.sql.SQLOutput;
 import java.util.*;
 
 import static io.restassured.RestAssured.*;
@@ -266,36 +271,181 @@ public class RestAssuredDemo {
 
     @Test
     public void postRequestExampleBodyAsMap(){
-        int id = new Random().nextInt(10000) +2000;
-        //We can also use JsonObject class
-//        JsonObject jsonObject = new JsonObject();
-//        jsonObject.addProperty("id", id);
-//        jsonObject.addProperty("name", "Dangerous Game");
-//        jsonObject.addProperty("releaseDate", "2021-09-10");
-//        jsonObject.addProperty("reviewScore", 88);
-//        jsonObject.addProperty("category", "FPS");
-//        jsonObject.addProperty("rating", "PG13");
+//        int id = new Random().nextInt(10000) +2000;
+//        //We can also use JsonObject class
+////        JsonObject jsonObject = new JsonObject();
+////        jsonObject.addProperty("id", id);
+////        jsonObject.addProperty("name", "Dangerous Game");
+////        jsonObject.addProperty("releaseDate", "2021-09-10");
+////        jsonObject.addProperty("reviewScore", 88);
+////        jsonObject.addProperty("category", "FPS");
+////        jsonObject.addProperty("rating", "PG13");
+//
+//        Map<String, Object> map = new LinkedHashMap<>();
+//        map.put("id", id);
+//        map.put("name", "Dangerous Game");
+//        map.put("releaseDate", "2021-09-10");
+//        map.put("reviewScore", 88);
+//        map.put("category", "FPS");
+//        map.put("rating", "PG13");
+//
+//        baseURI = "http://ec2-3-16-159-241.us-east-2.compute.amazonaws.com:8080/app";
+//
+//        given().
+//                header("Accept","application/json").
+//                header("Content-Type","application/json").
+//                body(map).
+////                body(new File("C:\\Users\\Nuclues\\IdeaProjects\\duotify-bdd-tests\\src\\test\\java\\apitests\\payload.json")).
+//                when().log().all().
+//                post("/videogames").
+//                then().log().all().
+//                statusCode(200).
+//                body("status", is("Record Added Successfully"));
 
-        Map<String, Object> map = new LinkedHashMap<>();
-        map.put("id", id);
-        map.put("name", "Dangerous Game");
-        map.put("releaseDate", "2021-09-10");
-        map.put("reviewScore", 88);
-        map.put("category", "FPS");
-        map.put("rating", "PG13");
+
+        WebDriverManager.firefoxdriver().setup();
+        WebDriver browser = new ChromeDriver();
+
+        browser.get("https://www.google.com/");
+
+
+
+    }
+
+
+    @Test
+    public void testGroovyGpath(){
 
         baseURI = "http://ec2-3-16-159-241.us-east-2.compute.amazonaws.com:8080/app";
 
-        given().
-                header("Accept","application/json").
-                header("Content-Type","application/json").
-                body(map).
-//                body(new File("C:\\Users\\Nuclues\\IdeaProjects\\duotify-bdd-tests\\src\\test\\java\\apitests\\payload.json")).
+//        List<Map> response = given().
+//                header("Accept", "application/json").
+//                header("Content-Type", "application/json").
+//
+//                when().log().all().
+//                get("/videogames").
+//                then().log().all().
+//                statusCode(200).extract().as(List.class);
+//
+//
+//        for(Map map: response){
+//            System.out.println(map.get("name"));
+//        }
+
+
+        JsonPath response = given().
+                header("Accept", "application/json").
+                header("Content-Type", "application/json").
+
                 when().log().all().
-                post("/videogames").
+                get("/videogames").
+                then().log().all().
+                statusCode(200).extract().jsonPath();
+
+
+        Object o = response.get("name");
+
+        System.out.println(o);
+
+    }
+
+
+    @Test
+    public void testFootBallApiGroovy(){
+
+        baseURI = "http://api.football-data.org/v2";
+
+        JsonPath jsonPath = given().
+                header("X-Auth-Token", "50bcf727783a4b6ba8191b1f7aab8940").
+                when().log().all().
+                get("/teams").
                 then().log().all().
                 statusCode(200).
-                body("status", is("Record Added Successfully"));
+                body("teams.size()", equalTo(52)).
+                body("teams.name", hasItem("Liverpool FC")).
+                // verify that
+                body("teams.phone", not(hasItem(nullValue()))).
+                extract().jsonPath();
+        //return the first teams name
+        String first = jsonPath.get("teams[0].name");
+        System.out.println(first);
+
+        //return the all teams name
+        List all = jsonPath.get("teams.name");
+        System.out.println(all);
+
+
+        // find the team name with the value "Wycombe Wanderers FC"
+
+        // find method matches the first occurence of whwatever you are looking for
+
+       String find = jsonPath.get("teams.name.find{ it == 'Wycombe Wanderers FC'}");
+       System.out.println(find);
+
+        // find all team names that are founded after 1914
+
+        List findAll = jsonPath.get("teams.findAll{ it.founded > 1914}.name");
+        System.out.println(findAll);
+
+        // find all teams with a name that starts with "A"
+
+        List startA = jsonPath.get("teams.name.findAll{ it.startsWith('A')}");
+        System.out.println(startA);
+
+
+        // find all the team names whose email is null
+
+        List emailNull = jsonPath.get("teams.findAll{it.email!=null}.name");
+        System.out.println(emailNull);
+
+
+        //
+
+
+
+
+
+
+
+
+    }
+
+    @Test
+    public void testFootBallApiGroovy2(){
+
+        baseURI = "http://api.football-data.org/v2";
+
+        JsonPath jsonPath = given().
+                header("X-Auth-Token", "50bcf727783a4b6ba8191b1f7aab8940").
+                when().log().all().
+                get("/teams/66").
+                then().log().all().
+                statusCode(200).
+                extract().jsonPath();
+
+        //return all dateOfBirths
+        List o = jsonPath.get("squad.collect{it.dateOfBirth.substring(0,4)}");
+
+        System.out.println(o);
+
+
+
+        // Find the oldest
+
+        int oldestYear = jsonPath.get("squad.collect{Integer.parseInt(it.dateOfBirth.substring(0,4))}.min()");
+
+        System.out.println(oldestYear);
+
+        // find the youngest
+
+        int youngest  = jsonPath.get("squad.collect{Integer.parseInt(it.dateOfBirth.substring(0,4))}.max()");
+        System.out.println(youngest);
+
+
+        int sumOfAllYears = jsonPath.get("squad.collect{Integer.parseInt(it.dateOfBirth.substring(0,4))}.sum()");
+        int size = jsonPath.get("squad.collect{Integer.parseInt(it.dateOfBirth.substring(0,4))}.size()");
+
+        System.out.println(2021 - sumOfAllYears/size);
 
     }
 

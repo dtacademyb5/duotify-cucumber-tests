@@ -1,5 +1,5 @@
 Feature: API demo scenarios
-  @api
+
   Scenario: API Scenario demo
 
     Given I add the header "Accept" "application/json"

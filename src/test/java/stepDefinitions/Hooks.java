@@ -3,12 +3,14 @@ package stepDefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.restassured.RestAssured;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utilities.DBUtility;
 import utilities.Driver;
 
 import java.util.concurrent.TimeUnit;
+import static io.restassured.RestAssured.*;
 
 public class Hooks {
 
@@ -20,6 +22,13 @@ public class Hooks {
 
 
     }
+
+    @Before ("@api")
+    public void setupBaseURI(){
+
+        baseURI = "http://ec2-3-16-159-241.us-east-2.compute.amazonaws.com:8080/app";
+    }
+
 
     @Before ("@db_only")
     public void setupDb(){

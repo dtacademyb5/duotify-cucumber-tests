@@ -1,5 +1,5 @@
 Feature: Test endpoints in isolation
-  @api
+
   Scenario: Test PUT request
 
     Given I add the header "Content-Type" "application/json" and header "Accept"  "application/json" and parameter "videoGameId" with value 20010 and the following payload

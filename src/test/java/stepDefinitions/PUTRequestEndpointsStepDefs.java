@@ -17,7 +17,7 @@ import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 
 
-public class ApiEndpointsStepDefs {
+public class PUTRequestEndpointsStepDefs {
 
 static{
     baseURI = "http://ec2-3-16-159-241.us-east-2.compute.amazonaws.com:8080/app";
@@ -52,10 +52,8 @@ static{
 
     @When("I send a PUT request to {string} endpoint")
     public void iSendTheFollowingPayloadAPUTRequestToEndpointWithAnId(String endpoint) {
-
        response = requestSpecification.when().log().all().
                 put(endpoint);
-
 
     }
     @Then("The response status code should be {int}")

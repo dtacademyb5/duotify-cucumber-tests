@@ -16,6 +16,18 @@ public class VideoGame {
 
     }
 
+    @Override
+    public String toString() {
+        return "VideoGame{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", reviewScore=" + reviewScore +
+                ", category='" + category + '\'' +
+                ", rating='" + rating + '\'' +
+                '}';
+    }
+
     public VideoGame(Integer id, String name, String releaseDate, Integer reviewScore, String category, String rating) {
         this.id = id;
         this.name = name;

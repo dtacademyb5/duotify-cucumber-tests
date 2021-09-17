@@ -1,6 +1,6 @@
 Feature: Test DELETE request
 
-  @api
+
   Scenario: Delete request test in isolation
     Given I add header "Accept" "application/json"
     And I add path parameter video game id 9103

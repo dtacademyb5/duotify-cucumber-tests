@@ -106,6 +106,7 @@
             <configuration>
                 <parallel>methods</parallel>
                 <useUnlimitedThreads>true</useUnlimitedThreads>
+<!--                these tags belong to maven surefire plugin which can run things in parallel-->
                 <testFailureIgnore>true</testFailureIgnore>
                 <includes>
                     <include>**/*ParallelRunner.java</include>-->

@@ -78,8 +78,14 @@ static{
 
 
     }
-    @Then("The response should be returned less than {int} seconds")
+    @Then("The response should be returned {word} than {int} seconds")
     public void theResponseShouldBeReturnedLessThanSeconds(Integer seconds) {
+        response.then().
+                time(lessThan(seconds*1000L));
+    }
+
+    @Then("The response should be returned less than {int} seconds")
+    public void theResponseShouldBeReturnedLessThanSecondssddsdf(Integer seconds) {
         response.then().
                 time(lessThan(seconds*1000L));
     }

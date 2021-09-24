@@ -18,9 +18,6 @@ Feature: Test feature
     Given The user is on the homepage
     When the user passes this information as a table
       | Oyat    | Siroj   | 23/04/1990 | VA | 236-23-3526 |
-      | Parviz  | Hatamov | 11/06/1960 | MD | 444-66-0902 |
-      | Rafael  | Aziz    | 11/05/1980 | NY | 123-99-5643 |
-      | Firdavs | Mirzaev | 11/4/2000  | NJ | 832-12-8764 |
 
     Then It should passed correctly
 
@@ -66,7 +63,7 @@ Feature: Test feature
     Then It should passed correctly
 
 
-
+  @docString
   Scenario: Test cucumber datatable map of maps
 
     Given The user is on the homepage
@@ -78,6 +75,18 @@ Feature: Test feature
       | KJFK | 40.639722 |  -73.778889 | 623523435  |
 
     Then It should passed correctly
+    When I pass this payload
+        """
+          {
+          "id": 9999,
+          "name": "Mario Kart",
+          "releaseDate": "2021-09-02",
+          "reviewScore": 98,
+          "category": "Arcade",
+          "rating": "GA"
+          }
+          """
+
 
 
 

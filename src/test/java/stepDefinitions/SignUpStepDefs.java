@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Assert;
 import pages.LoginPage;
+import pages.NoCucumbersFoundException;
 import pages.SignUpPage;
 import utilities.ConfigReader;
 import utilities.DBUtility;
@@ -54,7 +55,7 @@ public class SignUpStepDefs {
 
     }
     @Then("This information should be stored correctly in the database")
-    public void thisInformationShouldBeStoredCorrectlyInTheDatabase() throws SQLException {
+    public void thisInformationShouldBeStoredCorrectlyInTheDatabase() throws SQLException, NoCucumbersFoundException {
 
 
         String query = "select username,firstName, lastName, email, password from users where username='"+username+"'";
@@ -71,6 +72,10 @@ public class SignUpStepDefs {
 
 
         DBUtility.updateQuery("delete from users where username='"+username+"'");  //to delete the created user to be able to run the script again
+
+        if(map.isEmpty()){
+            throw new NoCucumbersFoundException("No cucumbers found.");
+        }
 
 
 

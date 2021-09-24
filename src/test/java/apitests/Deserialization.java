@@ -3,8 +3,12 @@ package apitests;
 import com.google.gson.JsonObject;
 
 
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.mapper.ObjectMapperType;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 import org.junit.Assert;
 import org.junit.Test;
 import pojos.VideoGame;
@@ -99,16 +103,30 @@ public class Deserialization {
 
         baseURI = "http://ec2-3-16-159-241.us-east-2.compute.amazonaws.com:8080/app";
 
-//
+// Example RequestSpecification
+        RequestSpecification requestSpecification = new RequestSpecBuilder().addHeader("Accept", "application/json").
+                addHeader("Accept", "application/json").
+                addHeader("Accept", "application/json").
+                addHeader("Accept", "application/json").
+                addHeader("Accept", "application/json").build();  // must end with build()
+
+// Example ResponseSpecification
+        ResponseSpecification responseSpecification = new ResponseSpecBuilder().
+                expectStatusCode(200).
+                expectContentType("application/json").
+                expectBody("status", equalTo("OK")).
+                expectHeader("Content-Encoding", "gzip").build(); // must end with build()
+
 
         VideoGame responseAsPOJO = given().log().all().
-
-                header("Accept", "application/json").
-                pathParam("videoGameId", "8").
+                // pass requestSpecification in spec() in given()
+                spec(requestSpecification).
                 when().log().all().
                 get("/videogames/{videoGameId}").
                 then().log().all().
-                statusCode(200).extract().as(VideoGame.class);
+                // pass responseSpecification in spec() in then()
+                spec(responseSpecification)
+                .extract().as(VideoGame.class);
 
         System.out.println(responseAsPOJO);
 

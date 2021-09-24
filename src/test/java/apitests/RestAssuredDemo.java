@@ -7,13 +7,17 @@ import io.restassured.path.json.JsonPath;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
 import java.sql.SQLOutput;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.matcher.RestAssuredMatchers.*;
@@ -231,7 +235,75 @@ public class RestAssuredDemo {
 
 //
 
+//          WebDriver driver = new DuckDuckGoDriver();
 
+
+        WebDriver driver = new WebDriver() {
+            @Override
+            public void get(String s) {
+
+            }
+
+            @Override
+            public String getCurrentUrl() {
+                return null;
+            }
+
+            @Override
+            public String getTitle() {
+                return null;
+            }
+
+            @Override
+            public List<WebElement> findElements(By by) {
+                return null;
+            }
+
+            @Override
+            public WebElement findElement(By by) {
+                return null;
+            }
+
+            @Override
+            public String getPageSource() {
+                return null;
+            }
+
+            @Override
+            public void close() {
+
+            }
+
+            @Override
+            public void quit() {
+
+            }
+
+            @Override
+            public Set<String> getWindowHandles() {
+                return null;
+            }
+
+            @Override
+            public String getWindowHandle() {
+                return null;
+            }
+
+            @Override
+            public TargetLocator switchTo() {
+                return null;
+            }
+
+            @Override
+            public Navigation navigate() {
+                return null;
+            }
+
+            @Override
+            public Options manage() {
+                return null;
+            }
+        };
 
 
 
@@ -447,6 +519,59 @@ public class RestAssuredDemo {
 
         System.out.println(2021 - sumOfAllYears/size);
 
+
+        createWait(Wait.LONG);
+        createWait(Wait.MEDIUM);
+        createWait(Wait.SHORT);
+
+    }
+
+
+    @Test
+    public void enums(){
+        System.out.println(TimeUnit.SECONDS);
+        System.out.println(Keys.ENTER);
+    }
+
+
+
+    public  static void createWait(Wait waitType){
+
+        System.out.println(waitType);
+
+
+
+    }
+
+    public static void main(String[] args) {
+
+
+//        Comparator<Product> comparator = new Comparator<Product>() {
+//            @Override
+//            public int compare(Product o1, Product o2) {
+//                return 0;
+//            }
+//        };
+
+        List<Product> list = new ArrayList<>();
+
+        list.add(new Product("Dress", 16.00, 60,"polyester"));
+        list.add(new Product("Sweter", 11.00, 10,"cotton"));
+        list.add(new Product("Skirt", 6.00, 2,"polyester"));
+        list.add(new Product("Dress", 20.00, 60,"cotton"));
+
+
+         list.sort(Comparator.comparing(Product::getPrice));
+
+        System.out.println(list);
+
+
+
+    }
+
+    @Test
+    public void m1(){
+        System.out.println("dbshvbdhcds");
     }
 
 

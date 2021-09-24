@@ -27,7 +27,7 @@ public class Driver {
 
 
 
-    public static   WebDriver getDriver(String browser){
+    public static  synchronized WebDriver getDriver(String browser){
 
 
 
@@ -90,7 +90,7 @@ public class Driver {
     }
 
 
-    public static  void quitDriver(){
+    public static synchronized void quitDriver(){
         if(drivers.get() != null){
             drivers.get().quit();
             drivers.remove();
